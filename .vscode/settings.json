@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "Cards.API\\bin\\Release\\net6.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/9513e2f5-c0bf-4622-806c-0d0679573435/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/cards-app"
+}
