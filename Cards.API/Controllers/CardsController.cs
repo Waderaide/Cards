@@ -2,10 +2,12 @@
 using Cards.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Cards.API.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Cards.API.Controllers
 {
     [ApiController]
+    
     [Route("api/cards")]
     public class CardsController : Controller
     {
@@ -20,6 +22,7 @@ namespace Cards.API.Controllers
 
         //Get all cards
         [HttpGet]
+        [EnableCors]
         [Route("get-all")]
         public async Task<IActionResult> GetAllCards()
         {
@@ -29,7 +32,7 @@ namespace Cards.API.Controllers
 
         //Get Single Card
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("get-single/{id:int}")]
         [ActionName("GetSingleCard")]
         public async Task<IActionResult> GetSingleCard([FromRoute] int id)
         {
@@ -43,7 +46,8 @@ namespace Cards.API.Controllers
 
         //Add card
         
-        [HttpPost]        
+        [HttpPost]
+        [Route("add")]      
         public async Task<IActionResult> AddCard([FromBody] Card card)
         {
             card.Id = new int();
@@ -75,7 +79,7 @@ namespace Cards.API.Controllers
 
         //Delete card
         [HttpDelete]
-        [Route("{id:int}")]
+        [Route("delete/{id:int}")]
         public async Task<IActionResult> DeleteCard([FromRoute] int id)
         {
             var exisitngcard = await cardsDbContext.Cards.FirstOrDefaultAsync(x => x.Id == id);
